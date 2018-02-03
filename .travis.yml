@@ -3,19 +3,6 @@ language: c
 cache:
   directories:
     - $HOME/.atspkg
-    - $HOME/.cabal
-    - $HOME/.ghc
-addons:
-  apt:
-    packages:
-      - cabal-install-head
-      - ghc-8.2.2
-      - libgmp3-dev
-    sources:
-      - hvr-ghc
-before_install:
-  - export PATH=/opt/ghc/bin:$PATH
-  - cabal update
 install:
   - mkdir -p $HOME/.local/bin
   - curl -sSl https://raw.githubusercontent.com/vmchale/atspkg/master/bash/install.sh | bash -s
@@ -23,5 +10,5 @@ install:
   - atspkg -v
 script:
   - curl -sL https://raw.githubusercontent.com/vmchale/tomlcheck/master/sh/check | sh -s .atsfmt.toml
-  - atspkg build ; atspkg build
-  - ./target/dhall-ats
+  - atspkg build
+  - ./target/ats-wc test/data/ulysses.txt
