@@ -10,3 +10,7 @@ exists mostly as a proof-of-concept and demonstration of
 
 You can download the wonderful [bench](https://github.com/Gabriel439/bench) tool
 to run the benchmarks.
+
+```
+bench "target/ats-wc test/data/ulysses.txt" "wc -l test/data/ulysses.txt"
+```
