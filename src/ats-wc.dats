@@ -12,18 +12,19 @@ fun display_help() : void =
 fun is_flag(s : string) : bool =
   string_is_prefix("-", s)
 
-fn should_help { n : nat | n > 0 }(argc : int(n), argv : !argv(n)) :<> bool =
+fn should_help { n : nat | n > 0 }(argc : int(n), argv : !argv(n)) : bool =
   let
-    fun loop {n:nat}{ m : nat | m < n } .<n-m>. (i : int(m), argc : int(n), argv : !argv(n)) :<>
+    fun loop {n:nat}{ m : nat | m < n } .<n-m>. (i : int(m), argc : int(n), argv : !argv(n)) :
       bool =
-      ifcase
-        | i + 1 < argc => loop(i + 1, argc, argv)
-        | let
-          var s = argv[i]
-        in
-          s = "-h" || s = "--help"
-        end => true
-        | _ => false
+      let
+        var s = argv[i]
+      in
+        ifcase
+          | s = "-h" || s = "--help" => true
+          | is_flag(s) => (prerr!("\33[31mError:\33[0m flag not recognized: '" + s + "'\n") ; exit(1))
+          | i + 1 < argc => loop(i + 1, argc, argv)
+          | _ => false
+      end
   in
     loop(0, argc, argv)
   end
@@ -34,16 +35,13 @@ fn cli_loop { n : nat | n > 1 }(argc : int(n), argv : !argv(n)) : void =
       let
         var s = argv[i]
       in
-        if not(is_flag(s)) then
-          let
-            var c = line_count(s)
-            val _ = if test_file_isdir(s) = 0 then
-              println!(c, " ", s)
-          in
-            c
-          end
-        else
-          (prerr!("\33[31mError:\33[0m flag not recognized: '" + s + "'\n") ; exit(1))
+        let
+          var c = line_count(s)
+          val _ = if test_file_isdir(s) = 0 then
+            println!(c, " ", s)
+        in
+          c
+        end
       end
     
     fun loop {n:nat}{ m : nat | m < n } .<n-m>. (i : int(m), argc : int(n), argv : !argv(n)) : int =
