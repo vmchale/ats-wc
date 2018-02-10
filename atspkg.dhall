@@ -9,5 +9,5 @@ in pkg //
       , target = "target/ats-wc" 
       }
     ]
-    , dependencies = [ https://raw.githubusercontent.com/vmchale/ats-linecount/master/pkg.dhall ]
+    , dependencies = [ "linecount" ]
   }
