@@ -1,13 +1,11 @@
-let pkg = https://raw.githubusercontent.com/vmchale/atspkg/master/pkgs/default.dhall
-in
-let dbin = https://raw.githubusercontent.com/vmchale/atspkg/master/pkgs/default-bin.dhall
+let prelude = https://raw.githubusercontent.com/vmchale/atspkg/master/dhall/atspkg-prelude.dhall
 
-in pkg //
+in prelude.default //
   { bin = 
-    [ dbin //
+    [ prelude.bin //
       { src = "src/ats-wc.dats"
       , target = "target/ats-wc" 
       }
     ]
-    , dependencies = [ "linecount" ]
+    , dependencies = prelude.mapPlainDeps [ "linecount" ]
   }
