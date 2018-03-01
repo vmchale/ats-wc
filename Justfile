@@ -1,5 +1,8 @@
-bench:
-    bench "target/ats-wc test/data/ulysses.txt" "wc -l test/data/ulysses.txt"
-
-valgrind:
-    valgrind ./target/ats-wc test/data/ulysses.txt
+all:
+    atspkg clean ; atspkg nuke ; atspkg build --target=x86_64-apple-darwin
+    atspkg clean ; atspkg nuke ; atspkg build --target=arm-linux-gnueabihf
+    atspkg clean ; atspkg nuke ; atspkg build --target=x86_64-unknown-redox
+    atspkg clean ; atspkg nuke ; atspkg build --target=aarch64-linux-gnu
+    atspkg clean ; atspkg nuke ; atspkg build --target=s390x-linux-gnu
+    atspkg clean ; atspkg nuke ; atspkg build --target=arm-linux-gnueabi
+    atspkg clean ; atspkg nuke ; atspkg build --target=sparc64-linux-gnu

@@ -8,4 +8,5 @@ in prelude.default //
       }
     ]
     , dependencies = prelude.mapPlainDeps [ "linecount" ]
+    , compiler = [0,3,10]
   }

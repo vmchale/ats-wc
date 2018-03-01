@@ -46,11 +46,14 @@ fn cli_loop { n : nat | n > 1 }(argc : int(n), argv : !argv(n)) : void =
     
     fun loop {n:nat}{ m : nat | m < n } .<n-m>. (i : int(m), argc : int(n), argv : !argv(n)) : int =
       ifcase
-        | i + 1 < argc => let
-          var total = p_wc(i, argv)
-        in
-          total + loop(i + 1, argc, argv)
-        end
+        | i + 1 < argc => 
+          begin
+            let
+              var total = p_wc(i, argv)
+            in
+              total + loop(i + 1, argc, argv)
+            end
+          end
         | _ => p_wc(i, argv)
     
     var total = loop(1, argc, argv)
