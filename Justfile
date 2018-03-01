@@ -1,5 +1,4 @@
 all:
-    atspkg clean ; atspkg nuke ; atspkg build --target=x86_64-apple-darwin
     atspkg clean ; atspkg nuke ; atspkg build --target=arm-linux-gnueabihf
     atspkg clean ; atspkg nuke ; atspkg build --target=x86_64-unknown-redox
     atspkg clean ; atspkg nuke ; atspkg build --target=aarch64-linux-gnu
