@@ -1,4 +1,4 @@
-#include "$PATSHOMELOCS/ats-linecount-0.2.4/lines.dats"
+#include "$PATSHOMELOCS/ats-linecount-0.2.5/lines.dats"
 #include "share/atspre_staload_libats_ML.hats"
 
 staload "libats/ML/SATS/string.sats"
