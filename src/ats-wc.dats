@@ -43,10 +43,10 @@ fn cli_loop { n : nat | n > 1 }(argc : int(n), argv : !argv(n)) : void =
           c
         end
       end
-    
+
     fun loop {n:nat}{ m : nat | m < n } .<n-m>. (i : int(m), argc : int(n), argv : !argv(n)) : int =
       ifcase
-        | i + 1 < argc => 
+        | i + 1 < argc =>
           begin
             let
               var total = p_wc(i, argv)
@@ -55,7 +55,7 @@ fn cli_loop { n : nat | n > 1 }(argc : int(n), argv : !argv(n)) : void =
             end
           end
         | _ => p_wc(i, argv)
-    
+
     var total = loop(1, argc, argv)
   in
     if argc >= 3 then
